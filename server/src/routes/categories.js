@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const storeService = require("../services/store");
+const categoryService = require("../services/category");
 
 router.get("/", async (req, res, next) => {
   try {
-    const allStores= await storeService.getAll(req.body);
+    const allStores= await categoryService.getAll(req.body);
     res.send(allStores);
   } catch (err) {
     next(err);
@@ -14,7 +14,7 @@ router.get("/", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    const dbResponse = await storeService.createNew(req.body);
+    const dbResponse = await categoryService.createNew(req.body);
     res.send(dbResponse);
   } catch (err) {
     next(err);
@@ -23,7 +23,7 @@ router.post("/", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const location = await storeService.getOne(req.params);
+    const location = await categoryService.getOne(req.params);
     res.send(location);
   } catch (err) {
     next(err);
