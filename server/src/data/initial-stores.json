@@ -1,11 +1,14 @@
 [
     {
-        "name": "Nike"
+        "name": "Nike",
+        "category_id": 1
     },
     {
-        "name": "Adidas"
+        "name": "Adidas",
+        "category_id": 4
     },
     {
-        "name": "Chanel"
+        "name": "Chanel",
+        "category_id": 3
     }
 ]

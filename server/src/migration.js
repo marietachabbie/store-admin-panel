@@ -17,6 +17,7 @@ const findOrCreateStore = async (storeData) => {
         name: storeData.name,
       },
       defaults: {
+        category_id: storeData.category_id,
         created_at: storeData.created_at,
       },
     }

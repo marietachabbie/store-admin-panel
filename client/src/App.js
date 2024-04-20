@@ -1,22 +1,32 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { useState, useEffect } from "react";
+import Table from "./Components/Table/Table";
 import "./App.css";
+import Modal from "./Components/Modal/Modal";
 
 function App() {
-  const [data, setData] = React.useState(null);
+  const [data, setData] = useState([]);
 
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
+  useEffect(() => {
+    fetchData();
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch("/api/stores");
+      const stores = await response.json();
+      setData(stores);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{!data ? "Loading..." : data}</p>
-      </header>
+      <div className="stores-header">
+        <h1>Stores</h1>
+        <Modal/>
+      </div>
+      <Table data={data} />
     </div>
   );
 }
