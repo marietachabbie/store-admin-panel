@@ -1,34 +1,19 @@
-import React, { useState, useEffect } from "react";
-import Table from "./Components/Table/Table";
-import Modal from "./Components/Modal/Modal";
-import "./App.css";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Stores from "./Pages/Stores";
+import Products from "./Pages/Products";
 
-function App() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch("/api/stores");
-      const stores = await response.json();
-      setData(stores);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
+export default function App() {
   return (
-    <div className="App">
-      <div className="stores-header">
-        <h1>Stores</h1>
-        <Modal/>
-      </div>
-      <Table data={data} />
-    </div>
+    <Router>
+      <Routes>
+          <Route exact path="/" element={<Stores />} />
+          <Route path="/products/:category" element={<Products />} />
+      </Routes>
+    </Router>
   );
 }
-
-export default App;

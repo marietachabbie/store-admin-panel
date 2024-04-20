@@ -2,12 +2,13 @@ import React, { useMemo } from "react";
 import { useTable, useSortBy } from "react-table";
 import "./styles.css";
 
-const Table = ({ data }) => {
+export default function Table ({ data }) {
   const columns = useMemo(
     () => [
       { Header: "ID", accessor: "id" },
-      { Header: "Name", accessor: "name" },
-      { Header: "Category", accessor: "category" ?? "None"}
+      { Header: "Product", accessor: "product" },
+      { Header: "Price", accessor: "price"},
+      { Header: "Store", accessor: "store" },
     ],
     []
   );
@@ -40,9 +41,9 @@ const Table = ({ data }) => {
             return (
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => (
-                  <td {...cell.getCellProps()}>
-                    {cell.render((e) => cell.column.Header === "Category" ? <a href="/api/categories/4"> {e.value} </a> : e.value)}
-                  </td>
+                    <td {...cell.getCellProps()}>
+                      {cell.render((e) => cell.column.Header === "Price" ? "$" + e.value : e.value)}
+                    </td>
                 ))}
               </tr>
             );
@@ -52,5 +53,3 @@ const Table = ({ data }) => {
     </div>
   );
 };
-
-export default Table;
