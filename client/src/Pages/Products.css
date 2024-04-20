@@ -1,0 +1,9 @@
+.Products {
+    text-align: center;
+}
+  
+.products-header {
+    padding: 30px 60px;
+    display: flex;
+    flex-direction: row;
+}

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import ProductsModal from "../Components/ProductsModal/ProductsModal";
 import ProductsTable from "../Components/ProductsTable/ProductsTable";
+import "./Products.css";
 
 export default function Products() {
     const [data, setData] = useState([]);
@@ -23,6 +25,12 @@ export default function Products() {
     };
 
     return (
+      <div className="Products">
+        <div className="products-header">
+          <h1>Products</h1>
+          <ProductsModal category_id={category_id}/>
+        </div>
         <ProductsTable data={data} />
+      </div>
     )
 }

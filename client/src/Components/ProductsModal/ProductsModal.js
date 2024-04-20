@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./Modal.css";
-import StoreForm from "../StoreForm/StoreForm";
+import "./ProductsModal.css";
+import ProductsForm from "../ProductsForm/ProductsForm";
 
-export default function Modal() {
+export default function ProductsModal(data) {
   const [modal, setModal] = useState(false);
 
   const toggleModal = () => {
@@ -25,8 +25,8 @@ export default function Modal() {
         <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>
           <div className="modal-content">
-            <h2>New Store</h2>
-            <StoreForm/>
+            <h2>New Product</h2>
+            <ProductsForm category_id={data.category_id}/>
             <button className="close-modal" onClick={toggleModal}>
               CLOSE
             </button>

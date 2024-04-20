@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import StoresTable from "../Components/StoresTable/StoresTable";
-import Modal from "../Components/Modal/Modal";
+import StoresModal from "../Components/StoresModal/StoresModal";
 import "./Stores.css";
 
 export default function Store() {
@@ -21,10 +21,10 @@ export default function Store() {
     };
   
     return (
-      <div className="App">
+      <div className="Stores">
         <div className="stores-header">
           <h1>Stores</h1>
-          <Modal/>
+          <StoresModal/>
         </div>
         <StoresTable data={data} />
       </div>

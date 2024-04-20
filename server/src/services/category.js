@@ -8,6 +8,8 @@ module.exports = {
     FROM products pp
     JOIN stores ss on ss.id = pp.store_id
     WHERE pp.category_id = ${id}
+    UNION SELECT pp.id, pp.name as product, price, 'Not Specified' as store
+    FROM products pp WHERE pp.store_id ISNULL
     ORDER BY id;`);
 
     return res?.[0] ?? [];

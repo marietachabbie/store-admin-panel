@@ -1,8 +1,9 @@
 import { useForm, useController } from "react-hook-form";
 import Select from "react-select";
-import "./StoreForm.css";
 
-export default function StoreForm() {
+import "./ProductsForm.css";
+
+export default function ProductsForm(props) {
     const {
         register,
         handleSubmit,
@@ -15,13 +16,14 @@ export default function StoreForm() {
     }
 
     const onSubmit = (data) => {
+        data.category_id = props.category_id;
         const requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data)
         };
 
-        fetch("/api/stores", requestOptions)
+        fetch("/api/products", requestOptions)
         .then(response => response.json())
         .then(res => {
             console.log(res.message)
@@ -29,19 +31,19 @@ export default function StoreForm() {
         });
     };
 
-    const categoryList = [
-        { value: 1, label: "womens trainers" },
-        { value: 2, label: "mens trainers" },
-        { value: 3, label: "womens dresses" },
-        { value: 4, label: "mens jackets" }
+    const productList = [
+        { value: 1, label: "Nike" },
+        { value: 2, label: "Adidas" },
+        { value: 3, label: "Chanel" },
     ];
-    const { field: { value: catValue, onChange: catOnChange, ...restCatField } } = useController({ name: "category_id", control });
+
+    const { field: { value: productValue, onChange: productOnChange, ...restProductField } } = useController({ name: "store_id", control });
 
     return(
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control">
-                    <label>Store Name</label>
+                    <label>Name</label>
                     <div>
                         <input
                             type="text"
@@ -57,15 +59,31 @@ export default function StoreForm() {
                     )}
                 </div>
                 <div className="form-control">
-                    <label>Category</label>
+                    <label>Price</label>
+                    <div>
+                        <input
+                            type="text"
+                            name="price"
+                            style={{width: "340px", height: "24px"}}
+                            {...register("price", {
+                                required: true,
+                            })}
+                        />
+                    </div>
+                    {errors.name && errors.name.type === "required" && (
+                        <p className="errorMsg" style={{color: "#ec3440"}}>Price is required.</p>
+                    )}
+                </div>
+                <div className="form-control">
+                    <label>Store</label>
                     <Select
                         className="select-input"
                         placeholder="Select Category"
                         isClearable
-                        options={categoryList}
-                        value={catValue ? categoryList.find(x => x.value === catValue) : catValue}
-                        onChange={option => catOnChange(option ? option.value : option)}
-                        {...restCatField}
+                        options={productList}
+                        value={productValue ? productList.find(x => x.value === productValue) : productValue}
+                        onChange={option => productOnChange(option ? option.value : option)}
+                        {...restProductField}
                     />
                 </div>
                 <div className="form-control">
