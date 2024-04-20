@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Table from "./Components/Table/Table";
-import "./App.css";
 import Modal from "./Components/Modal/Modal";
+import "./App.css";
 
 function App() {
   const [data, setData] = useState([]);

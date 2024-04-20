@@ -23,8 +23,8 @@ router.post("/", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const location = await storeService.getOne(req.params);
-    res.send(location);
+    const store = await storeService.getOne(req.params);
+    res.send(store);
   } catch (err) {
     next(err);
   }

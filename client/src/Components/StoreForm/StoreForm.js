@@ -15,7 +15,6 @@ export default function StoreForm() {
     }
 
     const onSubmit = (data) => {
-        console.log("🚀 ~ data:", data);
         const requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json" },

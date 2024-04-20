@@ -40,7 +40,9 @@ const Table = ({ data }) => {
             return (
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => (
-                  <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                  <td {...cell.getCellProps()}>
+                    {cell.render((e) => cell.column.Header === "Category" ? <a href="/api/categories/4"> {e.value} </a> : e.value)}
+                  </td>
                 ))}
               </tr>
             );
