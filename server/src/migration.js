@@ -47,6 +47,7 @@ const findOrCreateProduct = async (productData) => {
       defaults: {
         name: productData.name,
         price: productData.price,
+        image: productData.image,
         category_id: productData.category_id,
         store_id: productData.store_id,
         created_at: productData.created_at,

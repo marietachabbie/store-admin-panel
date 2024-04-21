@@ -14,10 +14,6 @@ const Category = db.define("category", {
     allowNull: false,
     unique: true,
   },
-  // image: {
-  // type: DataTypes.STRING,
-  // allowNull: true,
-  // },
   created_at: {
     type: DataTypes.DATEONLY,
     allowNull: false,

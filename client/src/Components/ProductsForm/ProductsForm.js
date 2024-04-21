@@ -1,9 +1,11 @@
+import React, { useState } from "react";
 import { useForm, useController } from "react-hook-form";
 import Select from "react-select";
-
 import "./ProductsForm.css";
 
 export default function ProductsForm(props) {
+    const [selectedImage, setSelectedImage] = useState(null);
+
     const {
         register,
         handleSubmit,
@@ -15,7 +17,27 @@ export default function ProductsForm(props) {
         window.location.reload(false);
     }
 
-    const onSubmit = (data) => {
+    const uploadImage = async() => {
+        const formData = new FormData();
+        formData.append("product-image", selectedImage);
+
+        const uploadRequestOptions = {
+            method: "POST",
+            body: formData
+        };
+
+        return new Promise((resolve, reject) => {
+            fetch("/api/products/upload-image", uploadRequestOptions)
+            .then(response => response.json())
+            .then(res => {
+                console.log("Image uploaded successfully!");
+                resolve(res.path)
+            })
+        })
+    }
+
+    const onSubmit = async (data) => {
+        data.image = await uploadImage();
         data.category_id = props.category_id;
         const requestOptions = {
             method: "POST",
@@ -84,6 +106,26 @@ export default function ProductsForm(props) {
                         value={productValue ? productList.find(x => x.value === productValue) : productValue}
                         onChange={option => productOnChange(option ? option.value : option)}
                         {...restProductField}
+                    />
+                </div>
+                <div className="form-control">
+                    <label>Upload Image</label>
+                    {selectedImage && (
+                        <div>
+                        <img
+                            alt="not found"
+                            width={"250px"}
+                            src={URL.createObjectURL(selectedImage)}
+                        />
+                        <br />
+                        <button onClick={() => setSelectedImage(null)}>Remove</button>
+                        </div>
+                    )}
+                    <input
+                        required
+                        type="file"
+                        name="productImage"
+                        onChange={(event) => setSelectedImage(event.target.files[0])}
                     />
                 </div>
                 <div className="form-control">

@@ -4,9 +4,6 @@ const db = createDatabase();
 
 module.exports = {
   getAll: async ({ page = 1, pageSize = 20 }) => {
-    const offset = page === 1 ? 0 : page * pageSize;
-    const limit = pageSize;
-
     const res = await db.query(`SELECT ss.id, ss.name, category_id,
     categories.name as category
     FROM stores ss

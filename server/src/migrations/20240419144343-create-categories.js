@@ -3,7 +3,6 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.dropTable("categories");
 
     await queryInterface.createTable("categories", {
       id: {
@@ -16,10 +15,6 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
-      // image: {
-      // type: Sequelize.STRING,
-      // allowNull: true,
-      // },
       created_at: {
         type: Sequelize.DATEONLY,
         allowNull: false,

@@ -2,12 +2,14 @@
     {
         "name": "Nike Women Pink Running Shoes",
         "price": "250",
+        "image": "images/product-image_dateVal_1713694282059_nike_pink.png",
         "category_id": "1",
         "store_id": "1"
     },
     {
         "name": "Nike Women Black Basketball Shoes",
         "price": "320",
+        "image": "images/product-image_dateVal_1713694282059_nike_black.png",
         "category_id": "1",
         "store_id": "1"
     },

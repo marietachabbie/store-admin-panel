@@ -9,6 +9,7 @@ export default function Table ({ data }) {
       { Header: "Product", accessor: "product" },
       { Header: "Price", accessor: "price"},
       { Header: "Store", accessor: "store" },
+      { Header: "Image", accessor: "image" },
     ],
     []
   );
@@ -42,7 +43,13 @@ export default function Table ({ data }) {
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => (
                     <td {...cell.getCellProps()}>
-                      {cell.render((e) => cell.column.Header === "Price" ? "$" + e.value : e.value)}
+                      {cell.render((e) => cell.column.Header === "Image" ?
+                      <img
+                        alt="product"
+                        src={"http://localhost:8080/" + e.value?.split("/").slice(-1)}
+                        style={{height: "120px"}}
+                      />
+                      : cell.column.Header === "Price" ? "$" + e.value : e.value)}
                     </td>
                 ))}
               </tr>

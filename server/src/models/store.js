@@ -14,10 +14,6 @@ const Store = db.define("store", {
     allowNull: false,
     unique: true,
   },
-  // logo: {
-  // type: DataTypes.STRING,
-  // allowNull: true,
-  // },
   category_id: {
     type: DataTypes.INTEGER,
     allowNull: true,
